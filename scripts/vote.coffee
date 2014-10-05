@@ -6,7 +6,7 @@
 Util = require "util"
 _ = require "lodash"
 BIG_VOTE = []
-VOTE_TIMER = 15
+VOTE_TIMER = 60
 
 module.exports = (robot) ->
 
