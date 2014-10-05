@@ -63,8 +63,11 @@ module.exports = (robot) ->
       msg.send message_payload
 
       setTimeout (->
-        robot.brain.set("are_we_voting", false)
-        msg.send broadcast_voting_results(msg.match[1])
+        if robot.brain.get("are_we_voting")
+          robot.brain.set("are_we_voting", false)
+          msg.send broadcast_voting_results(msg.match[1])
+        else
+          msg.send 'The vote was canceled :sadpanda:'
       ), VOTE_TIMER*1000
 
   robot.respond /yes/i, (msg) ->
