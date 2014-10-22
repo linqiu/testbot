@@ -107,14 +107,14 @@ module.exports = (robot) ->
         if gallery_place_trucks?
           message_to_send = "Trucks at Gallery Place: \n"
           for truck in gallery_place_trucks
-            message_to_send = message_to_send + "#{truck.print_name} http://www.twitter.com/#{truck.truck}\n"
+            message_to_send = message_to_send + "#{truck.print_name} http://www.twitter.com/#{truck.truck} \n"
         else
           message_to_send = "Oh no, there's nothing near Gallery Place!\n"
 
         if metro_place_trucks?
           message_to_send = message_to_send + "Trucks at Metro Center: \n"
           for truck in metro_place_trucks
-            message_to_send = message_to_send + "#{truck.print_name} http://www.twitter.com/#{truck.truck}\n"
+            message_to_send = message_to_send + "#{truck.print_name} http://www.twitter.com/#{truck.truck} \n"
         else
           message_to_send = message_to_send + "And nothing at Metro Center!\n"
 

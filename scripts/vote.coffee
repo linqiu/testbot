@@ -27,19 +27,22 @@ module.exports = (robot) ->
     message_payload
 
   vote_helper = (msg, are_we_voting, outcome) ->
-    if(are_we_voting)
-      message_payload = "#{outcome} vote registered from: "+msg.message.user.name
-      existing_vote = _.findWhere(BIG_VOTE, {user: msg.message.user.name})
-      if(existing_vote)
-        unless existing_vote.vote is outcome
-          message_payload += '\nUh oh, '+msg.message.user.name+ ' switched his/her vote!'
-        else
-          message_payload += '\nUgh, I already got your vote. Stop spamming'
-        existing_vote.vote = outcome
-      else
-        BIG_VOTE.push({user: msg.message.user.name, vote: outcome})
+    if (msg.message.user.name == "jared")
+      message_payload = "Jared doesn't vote"
     else
-      message_payload = msg.message.user.name + ", we're not voting anymore"
+      if(are_we_voting)
+        message_payload = "#{outcome} vote registered from: "+msg.message.user.name
+        existing_vote = _.findWhere(BIG_VOTE, {user: msg.message.user.name})
+        if(existing_vote)
+          unless existing_vote.vote is outcome
+            message_payload += '\nUh oh, '+msg.message.user.name+ ' switched his/her vote!'
+          else
+            message_payload += '\nUgh, I already got your vote. Stop spamming'
+          existing_vote.vote = outcome
+        else
+          BIG_VOTE.push({user: msg.message.user.name, vote: outcome})
+      else
+        message_payload = msg.message.user.name + ", we're not voting anymore"
     message_payload
 
   robot.respond /reset vote/i, (msg) ->
