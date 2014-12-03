@@ -5,6 +5,8 @@
 #   hubot feed me
 #   hubot cookie me
 
+_ = require "lodash"
+
 Number.prototype.toRad = ->
   this * Math.PI / 180
 
@@ -111,16 +113,16 @@ module.exports = (robot) ->
             message_to_send = message_to_send + "#{truck.print_name} http://www.twitter.com/#{truck.truck} \n"
         else
           message_to_send = "Oh no, there's nothing near Gallery Place!\n"
-
+        
         if metro_place_trucks?
-          message_to_send = message_to_send + "Trucks at Metro Center: \n"
-          for truck in metro_place_trucks
-            if("#{truck.print_name}" == 'Captain Cookie')
-              metro_message = "#{truck.print_name} http://www.twitter.com/#{truck.truck} \n" + metro_message 
-            else
-              metro_message = metro_message + "To Far To Care \n"  
+          message_to_send = message_to_send + "\nTrucks at Metro Center: \n"          
+          if(metro_place_trucks.length>0)
+            if(_.findWhere(metro_place_trucks, {print_name: 'Captain Cookie'}))
+              metro_message = "Captain Cookie http://www.twitter.com/captaincookiedc \n" + metro_message 
+            if(_.findWhere(metro_place_trucks, {print_name: 'Captain Cookie'}))
+              metro_message = metro_message + "Rest Too Far To Care \n" 
         else
-          message_to_send = message_to_send + "And nothing at Metro Center!\n"
+          message_to_send = message_to_send + "\nAnd nothing at Metro Center!\n"
 
         message_to_send= message_to_send+metro_message
         msg.send message_to_send
