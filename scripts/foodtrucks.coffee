@@ -116,11 +116,12 @@ module.exports = (robot) ->
         
         if metro_place_trucks?
           message_to_send = message_to_send + "\nTrucks at Metro Center: \n"          
-          if(metro_place_trucks.length>0)
-            if(_.findWhere(metro_place_trucks, {print_name: 'Captain Cookie'}))
-              metro_message = "Captain Cookie http://www.twitter.com/captaincookiedc \n" + metro_message 
-            if(_.findWhere(metro_place_trucks, {print_name: 'Captain Cookie'}))
-              metro_message = metro_message + "Rest Too Far To Care \n" 
+          if(_.findWhere(metro_place_trucks, {print_name: 'Captain Cookie'}))
+            metro_message = "Captain Cookie http://www.twitter.com/captaincookiedc \n" + metro_message 
+            if((metro_place_trucks.length-1)>0)
+              metro_message = metro_message + "And #{metro_place_trucks.length-1} Other Trucks\n" 
+          else
+            metro_message = metro_message + "There are #{metro_place_trucks.length-1} Trucks In A Galaxy Far Far Away..\n"     
         else
           message_to_send = message_to_send + "\nAnd nothing at Metro Center!\n"
 
