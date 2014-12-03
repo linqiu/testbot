@@ -90,6 +90,7 @@ module.exports = (robot) ->
         locations = JSON.parse(body)
 
         message_to_send = ''
+        metro_message=''
 
         unless locations.markers?
           msg.send "No trucks on the map :disapproval_look:"
@@ -114,8 +115,12 @@ module.exports = (robot) ->
         if metro_place_trucks?
           message_to_send = message_to_send + "Trucks at Metro Center: \n"
           for truck in metro_place_trucks
-            message_to_send = message_to_send + "#{truck.print_name} http://www.twitter.com/#{truck.truck} \n"
+            if("#{truck.print_name}" == 'Captain Cookie')
+              metro_message = "#{truck.print_name} http://www.twitter.com/#{truck.truck} \n" + metro_message 
+            else
+              metro_message = metro_message + "To Far To Care \n"  
         else
           message_to_send = message_to_send + "And nothing at Metro Center!\n"
 
+        message_to_send= message_to_send+metro_message
         msg.send message_to_send
