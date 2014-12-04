@@ -121,7 +121,7 @@ module.exports = (robot) ->
             if((metro_place_trucks.length-1)>0)
               metro_message = metro_message + "And #{metro_place_trucks.length-1} Other Trucks\n" 
           else
-            metro_message = metro_message + "There are #{metro_place_trucks.length-1} Trucks In A Galaxy Far Far Away..\n"     
+            metro_message = metro_message + "There are #{metro_place_trucks.length} Trucks In A Galaxy Far Far Away..\n"     
         else
           message_to_send = message_to_send + "\nAnd nothing at Metro Center!\n"
 
