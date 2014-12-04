@@ -27,7 +27,6 @@ module.exports = (robot) ->
     message_payload
   
   vote_helper = (msg, are_we_voting, outcome) ->
-    msg.send "Voter: <#{msg.message.user.name}> <#{msg.message.user.id}>"
     if (msg.message.user.id == 'U026669TL')   
       message_payload = "Jared you Know You Don't Vote\n"
       if(msg.message.user.name.toLowerCase() != 'jared')
