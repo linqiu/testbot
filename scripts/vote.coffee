@@ -25,10 +25,13 @@ module.exports = (robot) ->
       message_payload += "It was #{yays.length} for yes and #{nays.length} for no.\n"
       message_payload += "With a total of #{total} votes.\n#{winner}"
     message_payload
-
+  
   vote_helper = (msg, are_we_voting, outcome) ->
-    if (msg.message.user.name == "jared")
-      message_payload = "Jared doesn't vote"
+    msg.send "Voter: <#{msg.message.user.name}> <#{msg.message.user.id}>"
+    if (msg.message.user.id == 'U026669TL')   
+      message_payload = "Jared you Know You Don't Vote\n"
+      if(msg.message.user.name.toLowerCase() != 'jared')
+        message_payload += "http://i.imgur.com/MSa9Rx0.jpg"
     else
       if(are_we_voting)
         message_payload = "#{outcome} vote registered from: "+msg.message.user.name
